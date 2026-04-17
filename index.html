@@ -16,97 +16,44 @@
   }
 
   .container { max-width: 680px; margin: 0 auto; }
-
   h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.25rem; color: #fff; }
 
-  .admin-indicator {
-    font-size: 0.7rem;
-    color: #a78bfa;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 1.5rem;
-    display: none;
-  }
-
+  .admin-indicator { font-size: 0.7rem; color: #a78bfa; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.5rem; display: none; }
   .admin-indicator.visible { display: block; }
 
-  label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #999;
-    margin-bottom: 0.4rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
+  .disabled-banner { background: #2a1515; border: 1px solid #4a2020; color: #ff6b6b; border-radius: 10px; padding: 1.5rem; margin-top: 2rem; text-align: center; font-size: 1rem; display: none; }
+  .disabled-banner.visible { display: block; }
+
+  label { display: block; font-size: 0.85rem; font-weight: 500; color: #999; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; }
 
   textarea, select, input[type="password"], input[type="text"] {
-    width: 100%;
-    background: #141414;
-    border: 1px solid #2a2a2a;
-    border-radius: 8px;
-    color: #e0e0e0;
-    font-family: inherit;
-    font-size: 0.95rem;
-    padding: 0.75rem;
-    transition: border-color 0.2s;
+    width: 100%; background: #141414; border: 1px solid #2a2a2a; border-radius: 8px;
+    color: #e0e0e0; font-family: inherit; font-size: 0.95rem; padding: 0.75rem; transition: border-color 0.2s;
   }
 
-  textarea:focus, select:focus, input:focus {
-    outline: none;
-    border-color: #4a9eff;
-  }
-
+  textarea:focus, select:focus, input:focus { outline: none; border-color: #4a9eff; }
   textarea { resize: vertical; line-height: 1.5; }
   #postText { min-height: 160px; }
   #existingComments { min-height: 100px; }
   .field { margin-bottom: 1.25rem; }
 
-  .collapsible-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    user-select: none;
-    margin-bottom: 0.4rem;
-  }
-
+  .collapsible-header { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; user-select: none; margin-bottom: 0.4rem; }
   .collapsible-header label { cursor: pointer; margin-bottom: 0; }
-
   .chevron { font-size: 0.7rem; color: #666; transition: transform 0.2s; }
   .chevron.open { transform: rotate(90deg); }
-
   .collapsible-body { display: none; }
   .collapsible-body.open { display: block; }
 
   select {
-    appearance: none;
-    cursor: pointer;
-    padding-right: 2rem;
+    appearance: none; cursor: pointer; padding-right: 2rem;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.75rem center;
+    background-repeat: no-repeat; background-position: right 0.75rem center;
   }
 
   .row { display: flex; gap: 1rem; align-items: flex-end; }
   .row .field { flex: 1; }
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    padding: 0.65rem 1.25rem;
-    border: none;
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.2s, opacity 0.2s;
-    white-space: nowrap;
-  }
-
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.65rem 1.25rem; border: none; border-radius: 8px; font-family: inherit; font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: background 0.2s, opacity 0.2s; white-space: nowrap; }
   .btn:disabled { opacity: 0.5; cursor: not-allowed; }
   .btn-primary { background: #4a9eff; color: #fff; padding: 0.75rem; font-size: 1rem; }
   .btn-primary:hover:not(:disabled) { background: #3a8eef; }
@@ -115,87 +62,31 @@
   .btn-improve { background: #1a1a2e; color: #a78bfa; border: 1px solid #2d2d4a; }
   .btn-improve:hover:not(:disabled) { background: #252545; }
 
-  .btn-copy {
-    background: #15803d;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 0.75rem;
-    width: 100%;
-    border-radius: 8px;
-  }
-
+  .btn-copy { background: #15803d; color: #fff; font-size: 1rem; font-weight: 600; padding: 0.75rem; width: 100%; border-radius: 8px; }
   .btn-copy:hover:not(:disabled) { background: #16a34a; }
   .btn-copy.copied { background: #4ade80; color: #000; }
 
-  .result-card {
-    background: #141414;
-    border: 1px solid #2a2a2a;
-    border-radius: 10px;
-    padding: 1.25rem;
-    margin-top: 1.5rem;
-    display: none;
-  }
-
+  .result-card { background: #141414; border: 1px solid #2a2a2a; border-radius: 10px; padding: 1.25rem; margin-top: 1.5rem; display: none; }
   .result-card.visible { display: block; }
-
   .result-reasoning { display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 1rem; }
-
-  .type-badge {
-    display: inline-block;
-    background: #1a2a3a;
-    color: #4a9eff;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.25rem 0.65rem;
-    border-radius: 4px;
-    flex-shrink: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-  }
-
+  .type-badge { display: inline-block; background: #1a2a3a; color: #4a9eff; font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.65rem; border-radius: 4px; flex-shrink: 0; text-transform: uppercase; letter-spacing: 0.03em; }
   .reasoning-text { font-size: 0.85rem; color: #777; font-style: italic; line-height: 1.4; }
-
   .comment-text { font-size: 1rem; line-height: 1.65; color: #e8e8e8; white-space: pre-wrap; }
-
   .comment-meta { margin-top: 0.75rem; font-size: 0.8rem; color: #666; }
 
-  .type-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 1rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid #1e1e1e;
-  }
-
+  .type-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #1e1e1e; }
   .type-chips-label { font-size: 0.7rem; color: #555; text-transform: uppercase; letter-spacing: 0.05em; width: 100%; margin-bottom: 0.15rem; }
-
-  .type-chip {
-    padding: 0.3rem 0.7rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    background: #1a1a1a;
-    color: #888;
-    border: 1px solid #2a2a2a;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-
+  .type-chip { padding: 0.3rem 0.7rem; border-radius: 20px; font-size: 0.75rem; font-weight: 500; background: #1a1a1a; color: #888; border: 1px solid #2a2a2a; cursor: pointer; transition: all 0.15s; }
   .type-chip:hover { background: #222; color: #bbb; border-color: #444; }
   .type-chip.active { background: #1a2a3a; color: #4a9eff; border-color: #2a4a6a; }
-
   .result-actions { display: flex; gap: 0.5rem; margin-top: 0.75rem; flex-wrap: wrap; }
 
   .feedback-section { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #1e1e1e; }
   .feedback-section.open { display: block; }
   .feedback-section textarea { min-height: 80px; margin-bottom: 0.75rem; font-size: 0.9rem; }
   .feedback-actions { display: flex; gap: 0.5rem; }
-
   .training-badge { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.7rem; color: #555; margin-top: 0.5rem; }
   .training-dot { width: 6px; height: 6px; border-radius: 50%; background: #a78bfa; }
-
   .write-own-section { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #1e1e1e; }
   .write-own-section.open { display: block; }
   .write-own-section textarea { min-height: 80px; margin-bottom: 0.75rem; font-size: 0.9rem; }
@@ -218,24 +109,11 @@
   .spinner { display: none; margin: 1.5rem auto; width: 32px; height: 32px; border: 3px solid #222; border-top-color: #4a9eff; border-radius: 50%; animation: spin 0.7s linear infinite; }
   .spinner.visible { display: block; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
   .error-msg { background: #2a1515; border: 1px solid #4a2020; color: #ff6b6b; border-radius: 8px; padding: 0.75rem; margin-top: 1rem; font-size: 0.9rem; display: none; }
   .error-msg.visible { display: block; }
 
-  .settings-section {
-    background: #111;
-    border: 1px solid #2a2a2a;
-    border-radius: 8px;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .settings-section input[type="password"],
-  .settings-section input[type="text"] {
-    font-family: monospace;
-    font-size: 0.85rem;
-  }
-
+  .settings-section { background: #111; border: 1px solid #2a2a2a; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+  .settings-section input[type="password"], .settings-section input[type="text"] { font-family: monospace; font-size: 0.85rem; }
   .settings-hint { font-size: 0.75rem; color: #555; margin-top: 0.35rem; }
   .settings-status { font-size: 0.75rem; margin-left: auto; }
   .settings-status.saved { color: #4ade80; }
@@ -244,7 +122,7 @@
   .profile-fields { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.5rem; }
   .profile-fields label { margin-bottom: 0; font-size: 0.75rem; }
   .profile-fields input, .profile-fields textarea { margin-top: 0.2rem; }
-  .profile-fields textarea { min-height: 60px; font-size: 0.88rem; }
+  .profile-fields textarea { min-height: 50px; font-size: 0.88rem; }
 
   .prompt-section { background: #111; border: 1px solid #2a2a2a; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
   .prompt-section textarea { min-height: 300px; font-size: 0.82rem; font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; line-height: 1.55; margin-top: 0.4rem; tab-size: 2; }
@@ -267,169 +145,189 @@
   <h1>LinkedIn Comment Generator</h1>
   <div class="admin-indicator" id="adminIndicator">Admin Mode</div>
 
-  <!-- API Key -->
-  <div class="settings-section">
-    <div class="collapsible-header" id="apiKeyToggle">
-      <span class="chevron" id="apiKeyChevron">&#9654;</span>
-      <label style="margin-bottom: 0; cursor: pointer;">API Key</label>
-      <span class="settings-status" id="apiKeyStatus"></span>
-    </div>
-    <div class="collapsible-body" id="apiKeyBody">
-      <input type="password" id="apiKey" placeholder="AIza..." style="margin-top: 0.4rem;" />
-      <div class="settings-hint">Stored in your browser only. Persists across sessions.</div>
-    </div>
-  </div>
+  <!-- Kill switch banner -->
+  <div class="disabled-banner" id="disabledBanner">This tool is currently offline. Check back later.</div>
 
-  <!-- About You (profile) -->
-  <div class="settings-section">
-    <div class="collapsible-header" id="profileToggle">
-      <span class="chevron" id="profileChevron">&#9654;</span>
-      <label style="margin-bottom: 0; cursor: pointer;">About You</label>
-      <span class="settings-status" id="profileStatus"></span>
-    </div>
-    <div class="collapsible-body" id="profileBody">
-      <div class="profile-fields">
-        <div>
-          <label>Your name</label>
-          <input type="text" id="profileName" placeholder="e.g. Sam Lawes" />
-        </div>
-        <div>
-          <label>Role &amp; company</label>
-          <input type="text" id="profileRole" placeholder="e.g. Sales Director at Lumenarc" />
-        </div>
-        <div>
-          <label>Short bio (2-3 sentences about your background)</label>
-          <textarea id="profileBio" placeholder="e.g. 17 years in B2B sales. Started in London boiler rooms doing cold calls, built revenue ops from scratch..."></textarea>
-        </div>
-        <div>
-          <label>Topics &amp; expertise (what you know and care about)</label>
-          <textarea id="profileExpertise" placeholder="e.g. B2B sales, outbound, cold calling, AI in sales, SaaS growth, founder-led sales..."></textarea>
-        </div>
+  <div id="appContent">
+    <!-- API Key (admin only - public uses config.json) -->
+    <div class="settings-section admin-only" id="apiKeySection">
+      <div class="collapsible-header" id="apiKeyToggle">
+        <span class="chevron" id="apiKeyChevron">&#9654;</span>
+        <label style="margin-bottom: 0; cursor: pointer;">API Key</label>
+        <span class="settings-status" id="apiKeyStatus"></span>
       </div>
-      <div class="settings-hint" style="margin-top: 0.5rem;">This personalises the AI so comments sound like you. Saved in your browser.</div>
-    </div>
-  </div>
-
-  <!-- System Prompt (admin only) -->
-  <div class="prompt-section admin-only" id="promptSection">
-    <div class="collapsible-header" id="promptToggle">
-      <span class="chevron" id="promptChevron">&#9654;</span>
-      <label style="margin-bottom: 0; cursor: pointer;">System Prompt</label>
-      <span class="prompt-status" id="promptStatus"></span>
-    </div>
-    <div class="collapsible-body" id="promptBody">
-      <textarea id="promptEditor" spellcheck="false"></textarea>
-      <div class="prompt-actions">
-        <button class="btn btn-reset" id="promptResetBtn">Reset to default</button>
-        <span class="prompt-status" id="promptSaveStatus"></span>
+      <div class="collapsible-body" id="apiKeyBody">
+        <input type="password" id="apiKey" placeholder="AIza..." style="margin-top: 0.4rem;" />
+        <div class="settings-hint">Admin override. Public users use the shared key from config.json.</div>
       </div>
     </div>
-  </div>
 
-  <!-- Post input -->
-  <div class="field">
-    <label for="postText">LinkedIn Post</label>
-    <textarea id="postText" placeholder="Paste the LinkedIn post you want to comment on..."></textarea>
-  </div>
-
-  <div class="field">
-    <div class="collapsible-header" id="commentsToggle">
-      <span class="chevron" id="commentsChevron">&#9654;</span>
-      <label>Existing Comments (optional)</label>
+    <!-- About You (simplified for public) -->
+    <div class="settings-section">
+      <div class="collapsible-header" id="profileToggle">
+        <span class="chevron" id="profileChevron">&#9654;</span>
+        <label style="margin-bottom: 0; cursor: pointer;">About You</label>
+        <span class="settings-status" id="profileStatus"></span>
+      </div>
+      <div class="collapsible-body" id="profileBody">
+        <div class="profile-fields">
+          <div>
+            <label>First name</label>
+            <input type="text" id="profileName" placeholder="e.g. Sam" />
+          </div>
+          <div>
+            <label>What do you do? (one line)</label>
+            <input type="text" id="profileRole" placeholder="e.g. B2B SaaS sales" />
+          </div>
+          <div>
+            <label>Topics you know about (comma-separated)</label>
+            <textarea id="profileExpertise" placeholder="e.g. outbound sales, AI tools, startup growth, cold calling"></textarea>
+          </div>
+        </div>
+        <div class="settings-hint" style="margin-top: 0.5rem;">Just enough so the AI comments from your perspective. Saved in your browser.</div>
+      </div>
     </div>
-    <div class="collapsible-body" id="commentsBody">
-      <textarea id="existingComments" placeholder="Paste existing comments so we don't repeat their points..."></textarea>
-    </div>
-  </div>
 
-  <div class="row">
+    <!-- System Prompt (admin only) -->
+    <div class="prompt-section admin-only" id="promptSection">
+      <div class="collapsible-header" id="promptToggle">
+        <span class="chevron" id="promptChevron">&#9654;</span>
+        <label style="margin-bottom: 0; cursor: pointer;">System Prompt</label>
+        <span class="prompt-status" id="promptStatus"></span>
+      </div>
+      <div class="collapsible-body" id="promptBody">
+        <textarea id="promptEditor" spellcheck="false"></textarea>
+        <div class="prompt-actions">
+          <button class="btn btn-reset" id="promptResetBtn">Reset to default</button>
+          <span class="prompt-status" id="promptSaveStatus"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post input -->
     <div class="field">
-      <label for="commentType">Comment Type</label>
-      <select id="commentType">
-        <option value="Auto">Auto (let AI choose)</option>
-        <option value="Supportive">Supportive</option>
-        <option value="Expander">Expander</option>
-        <option value="Professional">Professional</option>
-        <option value="Contrarian">Contrarian</option>
-        <option value="Connector">Connector</option>
-        <option value="Storyteller">Storyteller</option>
-        <option value="Questioner">Questioner</option>
-      </select>
-    </div>
-    <div class="field" style="flex: 0 0 auto;">
-      <button class="btn btn-primary" id="generateBtn" style="width: auto; padding: 0.65rem 2rem;">Generate</button>
-    </div>
-  </div>
-
-  <div class="spinner" id="spinner"></div>
-  <div class="error-msg" id="errorMsg"></div>
-
-  <div class="result-card" id="resultCard">
-    <div class="result-reasoning">
-      <span class="type-badge" id="typeBadge"></span>
-      <span class="reasoning-text" id="reasoningText"></span>
-    </div>
-    <div class="comment-text" id="commentText"></div>
-    <div class="comment-meta"><span id="wordCount"></span></div>
-
-    <!-- Big copy button -->
-    <button class="btn btn-copy" id="copyBtn" style="margin-top: 1rem;">Copy to Clipboard</button>
-
-    <div class="type-chips" id="typeChips">
-      <div class="type-chips-label">Switch type</div>
+      <label for="postText">LinkedIn Post</label>
+      <textarea id="postText" placeholder="Paste the LinkedIn post you want to comment on..."></textarea>
     </div>
 
-    <div class="result-actions">
-      <button class="btn btn-secondary" id="regenerateBtn">Regenerate</button>
-      <button class="btn btn-improve admin-only-inline" id="improveBtn">Improve</button>
-    </div>
-
-    <div class="feedback-section admin-only" id="feedbackSection">
-      <textarea id="feedbackText" placeholder="What's wrong with this comment?"></textarea>
-      <div class="feedback-actions">
-        <button class="btn btn-primary" id="feedbackSubmitBtn" style="width: auto; font-size: 0.9rem; padding: 0.55rem 1.25rem;">Regenerate with feedback</button>
-        <button class="btn btn-secondary" id="feedbackCancelBtn">Cancel</button>
-        <span class="attempt-counter" id="attemptCounter"></span>
+    <div class="field">
+      <div class="collapsible-header" id="commentsToggle">
+        <span class="chevron" id="commentsChevron">&#9654;</span>
+        <label>Existing Comments (optional)</label>
+      </div>
+      <div class="collapsible-body" id="commentsBody">
+        <textarea id="existingComments" placeholder="Paste existing comments so we don't repeat their points..."></textarea>
       </div>
     </div>
 
-    <div class="write-own-section admin-only" id="writeOwnSection">
-      <div class="write-own-hint">None of the AI attempts landed. Write what you'd actually post and the AI will learn from your style:</div>
-      <textarea id="writeOwnText" placeholder="Write your comment here..."></textarea>
-      <div class="feedback-actions">
-        <button class="btn btn-primary" id="writeOwnSaveBtn" style="width: auto; font-size: 0.9rem; padding: 0.55rem 1.25rem;">Save &amp; train</button>
-        <button class="btn btn-secondary" id="writeOwnCancelBtn">Cancel</button>
+    <div class="row">
+      <div class="field">
+        <label for="commentType">Comment Type</label>
+        <select id="commentType">
+          <option value="Auto">Auto (let AI choose)</option>
+          <option value="Supportive">Supportive</option>
+          <option value="Expander">Expander</option>
+          <option value="Professional">Professional</option>
+          <option value="Contrarian">Contrarian</option>
+          <option value="Connector">Connector</option>
+          <option value="Storyteller">Storyteller</option>
+          <option value="Questioner">Questioner</option>
+        </select>
+      </div>
+      <div class="field" style="flex: 0 0 auto;">
+        <button class="btn btn-primary" id="generateBtn" style="width: auto; padding: 0.65rem 2rem;">Generate</button>
       </div>
     </div>
 
-    <div class="training-badge admin-only" id="trainingBadge" style="display: none;">
-      <span class="training-dot"></span>
-      <span id="trainingCount"></span> learned preferences applied
-    </div>
-  </div>
+    <div class="spinner" id="spinner"></div>
+    <div class="error-msg" id="errorMsg"></div>
 
-  <div class="training-panel admin-only" id="trainingPanel" style="display: none;">
-    <div class="training-panel-header" id="trainingToggle">
-      <span class="chevron" id="trainingChevron">&#9654;</span>
-      <label style="margin-bottom: 0; cursor: pointer;">Training Memory</label>
-      <span class="training-badge" style="display: inline-flex; margin: 0;"><span class="training-dot"></span> <span id="trainingPanelCount">0</span> entries</span>
-      <button class="btn training-clear-btn" id="trainingClearBtn">Clear all</button>
+    <div class="result-card" id="resultCard">
+      <div class="result-reasoning">
+        <span class="type-badge" id="typeBadge"></span>
+        <span class="reasoning-text" id="reasoningText"></span>
+      </div>
+      <div class="comment-text" id="commentText"></div>
+      <div class="comment-meta"><span id="wordCount"></span></div>
+      <button class="btn btn-copy" id="copyBtn" style="margin-top: 1rem;">Copy to Clipboard</button>
+
+      <div class="type-chips" id="typeChips">
+        <div class="type-chips-label">Switch type</div>
+      </div>
+
+      <div class="result-actions">
+        <button class="btn btn-secondary" id="regenerateBtn">Regenerate</button>
+        <button class="btn btn-improve admin-only-inline" id="improveBtn">Improve</button>
+      </div>
+
+      <div class="feedback-section admin-only" id="feedbackSection">
+        <textarea id="feedbackText" placeholder="What's wrong with this comment?"></textarea>
+        <div class="feedback-actions">
+          <button class="btn btn-primary" id="feedbackSubmitBtn" style="width: auto; font-size: 0.9rem; padding: 0.55rem 1.25rem;">Regenerate with feedback</button>
+          <button class="btn btn-secondary" id="feedbackCancelBtn">Cancel</button>
+          <span class="attempt-counter" id="attemptCounter"></span>
+        </div>
+      </div>
+
+      <div class="write-own-section admin-only" id="writeOwnSection">
+        <div class="write-own-hint">None of the AI attempts landed. Write what you'd actually post and the AI will learn from your style:</div>
+        <textarea id="writeOwnText" placeholder="Write your comment here..."></textarea>
+        <div class="feedback-actions">
+          <button class="btn btn-primary" id="writeOwnSaveBtn" style="width: auto; font-size: 0.9rem; padding: 0.55rem 1.25rem;">Save &amp; train</button>
+          <button class="btn btn-secondary" id="writeOwnCancelBtn">Cancel</button>
+        </div>
+      </div>
+
+      <div class="training-badge admin-only" id="trainingBadge" style="display: none;">
+        <span class="training-dot"></span>
+        <span id="trainingCount"></span> learned preferences applied
+      </div>
     </div>
-    <div class="training-panel-body" id="trainingPanelBody"></div>
+
+    <div class="training-panel admin-only" id="trainingPanel" style="display: none;">
+      <div class="training-panel-header" id="trainingToggle">
+        <span class="chevron" id="trainingChevron">&#9654;</span>
+        <label style="margin-bottom: 0; cursor: pointer;">Training Memory</label>
+        <span class="training-badge" style="display: inline-flex; margin: 0;"><span class="training-dot"></span> <span id="trainingPanelCount">0</span> entries</span>
+        <button class="btn training-clear-btn" id="trainingClearBtn">Clear all</button>
+      </div>
+      <div class="training-panel-body" id="trainingPanelBody"></div>
+    </div>
   </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
 
-// --- Admin mode detection ---
 const IS_ADMIN = new URLSearchParams(window.location.search).has('admin');
+const $ = id => document.getElementById(id);
+
 if (IS_ADMIN) {
-  document.getElementById('appContainer').classList.add('admin-mode');
-  document.getElementById('adminIndicator').classList.add('visible');
+  $('appContainer').classList.add('admin-mode');
+  $('adminIndicator').classList.add('visible');
 }
 
-// --- Core system prompt (no personal details - those come from profile) ---
+// --- Kill switch: fetch config ---
+let sharedApiKey = null;
+
+if (!IS_ADMIN) {
+  try {
+    const configResp = await fetch('https://gist.githubusercontent.com/SampsonLaw365/93e1d033530d0337aaf93998a0e76ddc/raw/gist_config.json?' + Date.now());
+    if (configResp.ok) {
+      const config = await configResp.json();
+      if (!config.enabled) {
+        $('disabledBanner').classList.add('visible');
+        $('appContent').style.display = 'none';
+        return; // Stop everything
+      }
+      sharedApiKey = config.apiKey || null;
+    }
+  } catch (e) {
+    console.warn('Could not load config.json:', e);
+  }
+}
+
+// --- Core system prompt (the secret sauce - NOT visible to public users) ---
 const DEFAULT_SYSTEM_PROMPT = `You are a LinkedIn comment ghostwriter.
 
 {USER_PROFILE}
@@ -475,7 +373,8 @@ RESPONSE FORMAT: You must always respond with valid JSON in this exact structure
 }`;
 
 function getSystemPrompt() {
-  return localStorage.getItem('system_prompt') || DEFAULT_SYSTEM_PROMPT;
+  if (IS_ADMIN) return localStorage.getItem('system_prompt') || DEFAULT_SYSTEM_PROMPT;
+  return DEFAULT_SYSTEM_PROMPT;
 }
 
 function isPromptModified() {
@@ -485,20 +384,16 @@ function isPromptModified() {
 
 const COMMENT_TYPES = ['Supportive', 'Expander', 'Professional', 'Contrarian', 'Connector', 'Storyteller', 'Questioner'];
 
-const $ = id => document.getElementById(id);
-
-// --- Profile management ---
+// --- Profile ---
 function getProfile() {
-  try {
-    return JSON.parse(localStorage.getItem('user_profile') || '{}');
-  } catch { return {}; }
+  try { return JSON.parse(localStorage.getItem('user_profile') || '{}'); }
+  catch { return {}; }
 }
 
 function saveProfile() {
   const profile = {
     name: $('profileName').value.trim(),
     role: $('profileRole').value.trim(),
-    bio: $('profileBio').value.trim(),
     expertise: $('profileExpertise').value.trim(),
   };
   localStorage.setItem('user_profile', JSON.stringify(profile));
@@ -509,20 +404,18 @@ function loadProfile() {
   const p = getProfile();
   $('profileName').value = p.name || '';
   $('profileRole').value = p.role || '';
-  $('profileBio').value = p.bio || '';
   $('profileExpertise').value = p.expertise || '';
 }
 
 function isProfileFilled() {
   const p = getProfile();
-  return !!(p.name && p.role);
+  return !!(p.name);
 }
 
 function updateProfileStatus() {
   const status = $('profileStatus');
   if (isProfileFilled()) {
-    const p = getProfile();
-    status.textContent = p.name;
+    status.textContent = getProfile().name;
     status.className = 'settings-status saved';
   } else {
     status.textContent = 'Not set';
@@ -533,11 +426,8 @@ function updateProfileStatus() {
 function buildProfileSection() {
   const p = getProfile();
   if (!p.name) return 'The user has not provided their details yet. Write a generic but sharp comment.';
-
-  let section = `This person is ${p.name}`;
-  if (p.role) section += `, ${p.role}`;
-  section += '.';
-  if (p.bio) section += `\n\nBackground: ${p.bio}`;
+  let section = `This person is called ${p.name}.`;
+  if (p.role) section += ` They work in ${p.role}.`;
   if (p.expertise) section += `\n\nTOPICS AND EXPERTISE (weave in naturally when relevant, don't force it):\n${p.expertise}`;
   return section;
 }
@@ -545,17 +435,14 @@ function buildProfileSection() {
 function buildFullPrompt() {
   let prompt = getSystemPrompt();
   prompt = prompt.replace('{USER_PROFILE}', buildProfileSection());
-  if (IS_ADMIN) {
-    prompt += buildTrainingPrompt();
-  }
+  if (IS_ADMIN) prompt += buildTrainingPrompt();
   return prompt;
 }
 
-// --- Training memory ---
+// --- Training memory (admin only) ---
 function getTrainingHistory() {
-  try {
-    return JSON.parse(localStorage.getItem('comment_training') || '[]');
-  } catch { return []; }
+  try { return JSON.parse(localStorage.getItem('comment_training') || '[]'); }
+  catch { return []; }
 }
 
 function saveTrainingEntry(entry) {
@@ -568,14 +455,11 @@ function saveTrainingEntry(entry) {
 function buildTrainingPrompt() {
   const history = getTrainingHistory();
   if (history.length === 0) return '';
-
   const styleExamples = history.filter(e => e.betterComment);
   const feedbackEntries = history.filter(e => e.feedback && !e.betterComment);
-  const p = getProfile();
-  const name = p.name || 'the user';
+  const name = getProfile().name || 'the user';
 
   let section = `\n\nLEARNED PREFERENCES (from ${name}'s direct feedback - follow these religiously):\n`;
-
   if (styleExamples.length > 0) {
     section += `\n${name.toUpperCase()}'S OWN COMMENTS (match this voice and style closely):\n`;
     styleExamples.slice(-10).forEach((entry, i) => {
@@ -585,133 +469,75 @@ function buildTrainingPrompt() {
       if (entry.feedback) section += `   REASON: "${entry.feedback}"\n`;
     });
   }
-
   if (feedbackEntries.length > 0) {
     section += '\nREJECTED PATTERNS (never repeat these mistakes):\n';
     feedbackEntries.slice(-10).forEach((entry, i) => {
       section += `${i + 1}. REJECTED: "${(entry.badComment || '').substring(0, 100)}..." BECAUSE: "${entry.feedback}"\n`;
     });
   }
-
   return section;
 }
 
 // --- Collapsibles ---
-$('commentsToggle').addEventListener('click', () => {
-  $('commentsBody').classList.toggle('open');
-  $('commentsChevron').classList.toggle('open');
-});
+$('commentsToggle').addEventListener('click', () => { $('commentsBody').classList.toggle('open'); $('commentsChevron').classList.toggle('open'); });
 
-// --- API key ---
-function updateApiKeyStatus() {
-  const key = $('apiKey').value.trim();
-  const status = $('apiKeyStatus');
-  if (key) {
-    status.textContent = 'Saved';
-    status.className = 'settings-status saved';
-  } else {
-    status.textContent = 'Not set';
-    status.className = 'settings-status missing';
+// --- API key (admin only) ---
+if (IS_ADMIN) {
+  function updateApiKeyStatus() {
+    const key = $('apiKey').value.trim();
+    const status = $('apiKeyStatus');
+    status.textContent = key ? 'Saved' : 'Not set';
+    status.className = key ? 'settings-status saved' : 'settings-status missing';
   }
-}
-
-const savedKey = localStorage.getItem('gemini_api_key');
-if (savedKey) {
-  $('apiKey').value = savedKey;
-} else {
-  $('apiKeyBody').classList.add('open');
-  $('apiKeyChevron').classList.add('open');
-}
-updateApiKeyStatus();
-
-$('apiKey').addEventListener('input', () => {
-  localStorage.setItem('gemini_api_key', $('apiKey').value.trim());
+  const savedKey = localStorage.getItem('gemini_api_key');
+  if (savedKey) { $('apiKey').value = savedKey; } else { $('apiKeyBody').classList.add('open'); $('apiKeyChevron').classList.add('open'); }
   updateApiKeyStatus();
-});
+  $('apiKey').addEventListener('input', () => { localStorage.setItem('gemini_api_key', $('apiKey').value.trim()); updateApiKeyStatus(); });
+  $('apiKeyToggle').addEventListener('click', () => { $('apiKeyBody').classList.toggle('open'); $('apiKeyChevron').classList.toggle('open'); });
+}
 
-$('apiKeyToggle').addEventListener('click', () => {
-  $('apiKeyBody').classList.toggle('open');
-  $('apiKeyChevron').classList.toggle('open');
-});
+// --- Get the API key to use ---
+function getApiKey() {
+  if (IS_ADMIN) return $('apiKey').value.trim();
+  return sharedApiKey;
+}
 
 // --- Profile ---
 loadProfile();
 updateProfileStatus();
-
-if (!isProfileFilled()) {
-  $('profileBody').classList.add('open');
-  $('profileChevron').classList.add('open');
-}
-
-['profileName', 'profileRole', 'profileBio', 'profileExpertise'].forEach(id => {
-  $(id).addEventListener('input', saveProfile);
-});
-
-$('profileToggle').addEventListener('click', () => {
-  $('profileBody').classList.toggle('open');
-  $('profileChevron').classList.toggle('open');
-});
+if (!isProfileFilled()) { $('profileBody').classList.add('open'); $('profileChevron').classList.add('open'); }
+['profileName', 'profileRole', 'profileExpertise'].forEach(id => { $(id).addEventListener('input', saveProfile); });
+$('profileToggle').addEventListener('click', () => { $('profileBody').classList.toggle('open'); $('profileChevron').classList.toggle('open'); });
 
 // --- System prompt editor (admin only) ---
-function updatePromptStatus() {
-  const headerStatus = $('promptStatus');
-  const saveStatus = $('promptSaveStatus');
-  if (isPromptModified()) {
-    headerStatus.textContent = 'Customised';
-    headerStatus.className = 'prompt-status modified';
-    saveStatus.textContent = 'Saved';
-    saveStatus.className = 'prompt-status saved';
-  } else {
-    headerStatus.textContent = 'Default';
-    headerStatus.className = 'prompt-status default';
-    saveStatus.textContent = '';
-  }
-}
-
 if (IS_ADMIN) {
+  function updatePromptStatus() {
+    const h = $('promptStatus'); const s = $('promptSaveStatus');
+    if (isPromptModified()) { h.textContent = 'Customised'; h.className = 'prompt-status modified'; s.textContent = 'Saved'; s.className = 'prompt-status saved'; }
+    else { h.textContent = 'Default'; h.className = 'prompt-status default'; s.textContent = ''; }
+  }
   $('promptEditor').value = getSystemPrompt();
   updatePromptStatus();
-
   let promptSaveTimer = null;
   $('promptEditor').addEventListener('input', () => {
     clearTimeout(promptSaveTimer);
-    $('promptSaveStatus').textContent = 'Saving...';
-    $('promptSaveStatus').className = 'prompt-status modified';
+    $('promptSaveStatus').textContent = 'Saving...'; $('promptSaveStatus').className = 'prompt-status modified';
     promptSaveTimer = setTimeout(() => {
       const val = $('promptEditor').value;
-      if (val === DEFAULT_SYSTEM_PROMPT) {
-        localStorage.removeItem('system_prompt');
-      } else {
-        localStorage.setItem('system_prompt', val);
-      }
+      if (val === DEFAULT_SYSTEM_PROMPT) localStorage.removeItem('system_prompt'); else localStorage.setItem('system_prompt', val);
       updatePromptStatus();
     }, 500);
   });
-
-  $('promptToggle').addEventListener('click', () => {
-    $('promptBody').classList.toggle('open');
-    $('promptChevron').classList.toggle('open');
-  });
-
+  $('promptToggle').addEventListener('click', () => { $('promptBody').classList.toggle('open'); $('promptChevron').classList.toggle('open'); });
   $('promptResetBtn').addEventListener('click', () => {
-    if (confirm('Reset the system prompt to the original default? Your customisations will be lost.')) {
-      localStorage.removeItem('system_prompt');
-      $('promptEditor').value = DEFAULT_SYSTEM_PROMPT;
-      updatePromptStatus();
-    }
+    if (confirm('Reset to default?')) { localStorage.removeItem('system_prompt'); $('promptEditor').value = DEFAULT_SYSTEM_PROMPT; updatePromptStatus(); }
   });
 }
 
-let lastUsedType = null;
-let lastComment = null;
-let lastReasoning = null;
-let isGenerating = false;
-let attemptCount = 0;
-let rejectedComments = [];
+let lastUsedType = null, lastComment = null, lastReasoning = null, isGenerating = false, attemptCount = 0, rejectedComments = [];
 
-function showError(msg) { const el = $('errorMsg'); el.textContent = msg; el.classList.add('visible'); }
+function showError(msg) { $('errorMsg').textContent = msg; $('errorMsg').classList.add('visible'); }
 function hideError() { $('errorMsg').classList.remove('visible'); }
-
 function setLoading(on) {
   isGenerating = on;
   $('spinner').classList.toggle('visible', on);
@@ -719,303 +545,161 @@ function setLoading(on) {
   $('regenerateBtn').disabled = on;
   if ($('improveBtn')) $('improveBtn').disabled = on;
 }
-
-function countWords(text) {
-  return text.trim().split(/\s+/).filter(w => w.length > 0).length;
-}
+function countWords(text) { return text.trim().split(/\s+/).filter(w => w.length > 0).length; }
 
 function renderTypeChips(activeType) {
-  const container = $('typeChips');
-  container.querySelectorAll('.type-chip').forEach(c => c.remove());
+  const c = $('typeChips'); c.querySelectorAll('.type-chip').forEach(ch => ch.remove());
   COMMENT_TYPES.forEach(type => {
     const chip = document.createElement('button');
     chip.className = 'type-chip' + (type === activeType ? ' active' : '');
     chip.textContent = type;
-    chip.addEventListener('click', () => {
-      if (isGenerating) return;
-      $('commentType').value = type;
-      generate(type);
-    });
-    container.appendChild(chip);
+    chip.addEventListener('click', () => { if (!isGenerating) { $('commentType').value = type; generate(type); } });
+    c.appendChild(chip);
   });
 }
 
-// --- API call with retry and fallback ---
+// --- API call ---
 const MODELS = ['gemini-2.5-flash-lite', 'gemini-2.5-flash-preview'];
 
 async function callAPI(commentType, feedbackContext) {
-  const apiKey = $('apiKey').value.trim();
-  if (!apiKey) throw new Error('Please enter your Gemini API key.');
+  const apiKey = getApiKey();
+  if (!apiKey) throw new Error(IS_ADMIN ? 'Please enter your Gemini API key.' : 'This tool is not configured yet. Contact the admin.');
 
   const postText = $('postText').value.trim();
   if (!postText) throw new Error('Please paste a LinkedIn post.');
-
-  if (!isProfileFilled()) throw new Error('Please fill in your name and role in the "About You" section first.');
+  if (!isProfileFilled()) throw new Error('Please enter your first name in the "About You" section.');
 
   const existingComments = $('existingComments').value.trim();
-
   let userContent = `POST TO COMMENT ON:\n${postText}\n\n`;
-  if (existingComments) {
-    userContent += `EXISTING COMMENTS (don't repeat these points):\n${existingComments}\n\n`;
-  }
-
-  if (commentType === 'Auto') {
-    userContent += `COMMENT TYPE: Auto - analyse the post's tone, content and what would add the most value, then choose the best comment type. Explain your reasoning.\n\n`;
-  } else {
-    userContent += `COMMENT TYPE: ${commentType}\n\n`;
-  }
-
-  if (feedbackContext) {
-    userContent += `IMPORTANT - PREVIOUS ATTEMPT WAS REJECTED. Here was the previous comment:\n"${feedbackContext.previousComment}"\n\nFeedback on why it was bad:\n"${feedbackContext.feedback}"\n\nWrite a completely new and better comment that addresses this feedback. Take a totally different angle.\n\n`;
-  }
-
+  if (existingComments) userContent += `EXISTING COMMENTS (don't repeat these points):\n${existingComments}\n\n`;
+  userContent += commentType === 'Auto'
+    ? `COMMENT TYPE: Auto - analyse the post and choose the best comment type. Explain your reasoning.\n\n`
+    : `COMMENT TYPE: ${commentType}\n\n`;
+  if (feedbackContext) userContent += `IMPORTANT - PREVIOUS ATTEMPT REJECTED:\nPrevious: "${feedbackContext.previousComment}"\nFeedback: "${feedbackContext.feedback}"\nWrite a completely new comment addressing this feedback.\n\n`;
   userContent += `Respond with valid JSON only: {"chosenType": "...", "reasoning": "...", "comment": "..."}`;
 
-  const fullPrompt = buildFullPrompt();
   const payload = JSON.stringify({
-    system_instruction: { parts: [{ text: fullPrompt }] },
+    system_instruction: { parts: [{ text: buildFullPrompt() }] },
     contents: [{ role: 'user', parts: [{ text: userContent }] }],
-    generationConfig: {
-      maxOutputTokens: 1000,
-      responseMimeType: 'application/json',
-    },
+    generationConfig: { maxOutputTokens: 1000, responseMimeType: 'application/json' },
   });
 
   let lastError = null;
-
   for (const model of MODELS) {
     for (let attempt = 0; attempt < 3; attempt++) {
       const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: payload,
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload,
       });
-
       if (resp.ok) {
         const data = await resp.json();
         const raw = data.candidates[0].content.parts[0].text.trim();
         try { return JSON.parse(raw); }
-        catch {
-          console.warn('JSON parse failed, raw:', raw);
-          return { chosenType: commentType === 'Auto' ? 'Unknown' : commentType, reasoning: '', comment: raw };
-        }
+        catch { return { chosenType: commentType === 'Auto' ? 'Unknown' : commentType, reasoning: '', comment: raw }; }
       }
-
-      if (resp.status === 400 || resp.status === 403) throw new Error('Invalid API key. Check your key and try again.');
-
+      if (resp.status === 400 || resp.status === 403) throw new Error('Invalid API key.');
       if (resp.status === 503 || resp.status === 429) {
-        lastError = resp.status === 503 ? `Gemini (${model}) is overloaded` : `Gemini (${model}) rate limited`;
+        lastError = `Gemini (${model}) ${resp.status === 503 ? 'overloaded' : 'rate limited'}`;
         if (attempt < 2) { await new Promise(r => setTimeout(r, (attempt + 1) * 2000)); continue; }
         break;
       }
-
-      const body = await resp.text();
-      throw new Error(`API error (${resp.status}): ${body}`);
+      throw new Error(`API error (${resp.status}): ${await resp.text()}`);
     }
   }
-
-  throw new Error(`${lastError}. Retried across ${MODELS.length} models but all are unavailable. Try again in a minute.`);
+  throw new Error(`${lastError}. All models unavailable. Try again in a minute.`);
 }
 
-// --- Training panel rendering (admin only) ---
+// --- Training panel (admin) ---
 function renderTrainingPanel() {
   if (!IS_ADMIN) return;
-  const history = getTrainingHistory();
-  const panel = $('trainingPanel');
-  const body = $('trainingPanelBody');
-  const count = $('trainingPanelCount');
-
+  const history = getTrainingHistory(), panel = $('trainingPanel'), body = $('trainingPanelBody');
   if (history.length === 0) { panel.style.display = 'none'; return; }
-
-  panel.style.display = 'block';
-  count.textContent = history.length;
+  panel.style.display = 'block'; $('trainingPanelCount').textContent = history.length;
   body.innerHTML = '';
-
   [...history].reverse().forEach((entry, idx) => {
-    const realIdx = history.length - 1 - idx;
-    const div = document.createElement('div');
+    const realIdx = history.length - 1 - idx, div = document.createElement('div');
     div.className = 'training-entry';
     let html = `<button class="training-entry-delete" data-idx="${realIdx}" title="Remove">x</button>`;
     if (entry.feedback) html += `<div class="training-entry-label">Feedback</div><div class="training-entry-text">"${entry.feedback}"</div>`;
-    if (entry.badComment) html += `<div class="training-entry-label" style="margin-top:0.3rem">Rejected</div><div class="training-entry-text">"${entry.badComment.substring(0, 120)}${entry.badComment.length > 120 ? '...' : ''}"</div>`;
-    if (entry.betterComment) html += `<div class="training-entry-label" style="margin-top:0.3rem">Your version</div><div class="training-entry-preferred">"${entry.betterComment.substring(0, 200)}${entry.betterComment.length > 200 ? '...' : ''}"</div>`;
-    div.innerHTML = html;
-    body.appendChild(div);
+    if (entry.badComment) html += `<div class="training-entry-label" style="margin-top:0.3rem">Rejected</div><div class="training-entry-text">"${entry.badComment.substring(0, 120)}..."</div>`;
+    if (entry.betterComment) html += `<div class="training-entry-label" style="margin-top:0.3rem">Your version</div><div class="training-entry-preferred">"${entry.betterComment.substring(0, 200)}..."</div>`;
+    div.innerHTML = html; body.appendChild(div);
   });
-
   body.querySelectorAll('.training-entry-delete').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const idx = parseInt(e.target.dataset.idx);
-      const h = getTrainingHistory();
-      h.splice(idx, 1);
-      localStorage.setItem('comment_training', JSON.stringify(h));
-      renderTrainingPanel();
-      updateTrainingBadge();
-    });
+    btn.addEventListener('click', (e) => { const h = getTrainingHistory(); h.splice(parseInt(e.target.dataset.idx), 1); localStorage.setItem('comment_training', JSON.stringify(h)); renderTrainingPanel(); updateTrainingBadge(); });
   });
 }
 
 function updateTrainingBadge() {
   if (!IS_ADMIN) return;
-  const trainingCount = getTrainingHistory().length;
-  if (trainingCount > 0) {
-    $('trainingBadge').style.display = 'flex';
-    $('trainingCount').textContent = trainingCount;
-  } else {
-    $('trainingBadge').style.display = 'none';
-  }
+  const c = getTrainingHistory().length;
+  $('trainingBadge').style.display = c > 0 ? 'flex' : 'none';
+  if (c > 0) $('trainingCount').textContent = c;
 }
 
 // --- Generate ---
 async function generate(commentType, feedbackContext, retryCount) {
-  retryCount = retryCount || 0;
-  hideError();
-  setLoading(true);
+  retryCount = retryCount || 0; hideError(); setLoading(true);
   $('resultCard').classList.remove('visible');
-  if (IS_ADMIN) {
-    $('feedbackSection').classList.remove('open');
-    $('writeOwnSection').classList.remove('open');
-    $('feedbackText').value = '';
-  }
-
+  if (IS_ADMIN) { $('feedbackSection').classList.remove('open'); $('writeOwnSection').classList.remove('open'); $('feedbackText').value = ''; }
   try {
     const result = await callAPI(commentType, feedbackContext);
-    const comment = (result.comment || '').trim();
-    const words = countWords(comment);
-
+    const comment = (result.comment || '').trim(), words = countWords(comment);
     if (words < 15 && retryCount < 3) return generate(commentType, feedbackContext, retryCount + 1);
-
     if (feedbackContext) attemptCount++;
-
-    lastUsedType = result.chosenType || commentType;
-    lastComment = comment;
-    lastReasoning = result.reasoning || '';
-
-    $('typeBadge').textContent = lastUsedType;
-    $('reasoningText').textContent = lastReasoning;
-    $('commentText').textContent = comment;
-    $('wordCount').textContent = `${words} words`;
+    lastUsedType = result.chosenType || commentType; lastComment = comment; lastReasoning = result.reasoning || '';
+    $('typeBadge').textContent = lastUsedType; $('reasoningText').textContent = lastReasoning;
+    $('commentText').textContent = comment; $('wordCount').textContent = `${words} words`;
     if (IS_ADMIN) $('attemptCounter').textContent = attemptCount > 0 ? `Attempt ${attemptCount + 1}` : '';
-
     renderTypeChips(lastUsedType);
     if (IS_ADMIN) { updateTrainingBadge(); renderTrainingPanel(); }
-
     $('resultCard').classList.add('visible');
-  } catch (err) {
-    console.error('Generate error:', err);
-    showError(err.message);
-  } finally {
-    setLoading(false);
-  }
+  } catch (err) { console.error('Generate error:', err); showError(err.message); }
+  finally { setLoading(false); }
 }
 
-// --- Event listeners ---
-
-$('generateBtn').addEventListener('click', () => {
-  if (isGenerating) return;
-  attemptCount = 0;
-  rejectedComments = [];
-  generate($('commentType').value);
-});
-
+// --- Events ---
+$('generateBtn').addEventListener('click', () => { if (!isGenerating) { attemptCount = 0; rejectedComments = []; generate($('commentType').value); } });
 $('copyBtn').addEventListener('click', () => {
-  const text = $('commentText').textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = $('copyBtn');
-    btn.textContent = 'Copied!';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'Copy to Clipboard'; btn.classList.remove('copied'); }, 1500);
+  navigator.clipboard.writeText($('commentText').textContent).then(() => {
+    $('copyBtn').textContent = 'Copied!'; $('copyBtn').classList.add('copied');
+    setTimeout(() => { $('copyBtn').textContent = 'Copy to Clipboard'; $('copyBtn').classList.remove('copied'); }, 1500);
   });
 });
+$('regenerateBtn').addEventListener('click', () => { if (!isGenerating) generate(lastUsedType || $('commentType').value); });
 
-$('regenerateBtn').addEventListener('click', () => {
-  if (isGenerating) return;
-  generate(lastUsedType || $('commentType').value);
-});
-
-// Admin-only listeners
 if (IS_ADMIN) {
   $('improveBtn').addEventListener('click', () => {
-    if (attemptCount >= 2) {
-      $('feedbackSection').classList.remove('open');
-      $('writeOwnSection').classList.toggle('open');
-      if ($('writeOwnSection').classList.contains('open')) $('writeOwnText').focus();
-    } else {
-      $('writeOwnSection').classList.remove('open');
-      $('feedbackSection').classList.toggle('open');
-      if ($('feedbackSection').classList.contains('open')) $('feedbackText').focus();
-    }
+    if (attemptCount >= 2) { $('feedbackSection').classList.remove('open'); $('writeOwnSection').classList.toggle('open'); if ($('writeOwnSection').classList.contains('open')) $('writeOwnText').focus(); }
+    else { $('writeOwnSection').classList.remove('open'); $('feedbackSection').classList.toggle('open'); if ($('feedbackSection').classList.contains('open')) $('feedbackText').focus(); }
   });
-
-  $('feedbackCancelBtn').addEventListener('click', () => {
-    $('feedbackSection').classList.remove('open');
-    $('feedbackText').value = '';
-  });
-
+  $('feedbackCancelBtn').addEventListener('click', () => { $('feedbackSection').classList.remove('open'); $('feedbackText').value = ''; });
   $('feedbackSubmitBtn').addEventListener('click', () => {
-    if (isGenerating) return;
-    const feedback = $('feedbackText').value.trim();
-    if (!feedback) { $('feedbackText').focus(); return; }
+    if (isGenerating) return; const fb = $('feedbackText').value.trim(); if (!fb) { $('feedbackText').focus(); return; }
     rejectedComments.push(lastComment);
-    saveTrainingEntry({ postSnippet: $('postText').value.trim().substring(0, 100), badComment: lastComment, feedback: feedback, betterComment: null });
-    generate(lastUsedType || $('commentType').value, { previousComment: lastComment, feedback: feedback });
+    saveTrainingEntry({ postSnippet: $('postText').value.trim().substring(0, 100), badComment: lastComment, feedback: fb, betterComment: null });
+    generate(lastUsedType || $('commentType').value, { previousComment: lastComment, feedback: fb });
   });
-
-  $('writeOwnCancelBtn').addEventListener('click', () => {
-    $('writeOwnSection').classList.remove('open');
-    $('writeOwnText').value = '';
-  });
-
+  $('writeOwnCancelBtn').addEventListener('click', () => { $('writeOwnSection').classList.remove('open'); $('writeOwnText').value = ''; });
   $('writeOwnSaveBtn').addEventListener('click', () => {
-    const ownComment = $('writeOwnText').value.trim();
-    if (!ownComment) { $('writeOwnText').focus(); return; }
-    saveTrainingEntry({
-      postSnippet: $('postText').value.trim().substring(0, 100),
-      badComment: rejectedComments.length > 0 ? rejectedComments[rejectedComments.length - 1] : lastComment,
-      feedback: 'Wrote own comment instead of using the AI version',
-      betterComment: ownComment,
-    });
-    $('commentText').textContent = ownComment;
-    $('wordCount').textContent = `${countWords(ownComment)} words`;
-    $('typeBadge').textContent = 'Your version';
-    $('reasoningText').textContent = 'Saved to training memory';
-    $('writeOwnSection').classList.remove('open');
-    $('writeOwnText').value = '';
-    attemptCount = 0;
-    rejectedComments = [];
-    $('attemptCounter').textContent = '';
-    updateTrainingBadge();
-    renderTrainingPanel();
+    const own = $('writeOwnText').value.trim(); if (!own) { $('writeOwnText').focus(); return; }
+    saveTrainingEntry({ postSnippet: $('postText').value.trim().substring(0, 100), badComment: rejectedComments.length > 0 ? rejectedComments[rejectedComments.length - 1] : lastComment, feedback: 'Wrote own comment', betterComment: own });
+    $('commentText').textContent = own; $('wordCount').textContent = `${countWords(own)} words`;
+    $('typeBadge').textContent = 'Your version'; $('reasoningText').textContent = 'Saved to training memory';
+    $('writeOwnSection').classList.remove('open'); $('writeOwnText').value = '';
+    attemptCount = 0; rejectedComments = []; $('attemptCounter').textContent = '';
+    updateTrainingBadge(); renderTrainingPanel();
   });
-
-  $('trainingToggle').addEventListener('click', () => {
-    $('trainingPanelBody').classList.toggle('open');
-    $('trainingChevron').classList.toggle('open');
-  });
-
-  $('trainingClearBtn').addEventListener('click', () => {
-    if (confirm('Clear all training memory? This cannot be undone.')) {
-      localStorage.removeItem('comment_training');
-      renderTrainingPanel();
-      updateTrainingBadge();
-    }
-  });
-
-  renderTrainingPanel();
-  updateTrainingBadge();
+  $('trainingToggle').addEventListener('click', () => { $('trainingPanelBody').classList.toggle('open'); $('trainingChevron').classList.toggle('open'); });
+  $('trainingClearBtn').addEventListener('click', () => { if (confirm('Clear all training memory?')) { localStorage.removeItem('comment_training'); renderTrainingPanel(); updateTrainingBadge(); } });
+  renderTrainingPanel(); updateTrainingBadge();
 }
 
-// Ctrl+Enter to generate
 document.addEventListener('keydown', e => {
   if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
     e.preventDefault();
-    if (IS_ADMIN && $('writeOwnSection').classList.contains('open') && $('writeOwnText').value.trim()) {
-      $('writeOwnSaveBtn').click();
-    } else if (IS_ADMIN && $('feedbackSection').classList.contains('open') && $('feedbackText').value.trim()) {
-      $('feedbackSubmitBtn').click();
-    } else {
-      $('generateBtn').click();
-    }
+    if (IS_ADMIN && $('writeOwnSection').classList.contains('open') && $('writeOwnText').value.trim()) $('writeOwnSaveBtn').click();
+    else if (IS_ADMIN && $('feedbackSection').classList.contains('open') && $('feedbackText').value.trim()) $('feedbackSubmitBtn').click();
+    else $('generateBtn').click();
   }
 });
 
