@@ -138,6 +138,48 @@
   .admin-mode .admin-only { display: block; }
   .admin-mode .admin-only-inline { display: inline-flex; }
   .admin-only-inline { display: none; }
+
+  /* Public feedback rating */
+  .rating-section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #1e1e1e;
+  }
+
+  .rating-label { font-size: 0.8rem; color: #777; margin-bottom: 0.5rem; }
+
+  .rating-buttons { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
+
+  .rating-btn {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid #2a2a2a;
+    background: #1a1a1a;
+    color: #888;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .rating-btn:hover { border-color: #444; color: #ccc; }
+  .rating-btn.selected-good { background: #15392a; border-color: #1a6b4a; color: #4ade80; }
+  .rating-btn.selected-bad { background: #391515; border-color: #6b1a1a; color: #ff6b6b; }
+
+  .rating-note { display: none; margin-top: 0.5rem; }
+  .rating-note.open { display: block; }
+  .rating-note textarea { min-height: 50px; font-size: 0.85rem; margin-bottom: 0.5rem; }
+
+  .rating-submitted {
+    font-size: 0.8rem;
+    color: #4ade80;
+    display: none;
+    margin-top: 0.5rem;
+  }
+
+  .rating-submitted.visible { display: block; }
 </style>
 </head>
 <body>
@@ -251,6 +293,20 @@
       <div class="comment-meta"><span id="wordCount"></span></div>
       <button class="btn btn-copy" id="copyBtn" style="margin-top: 1rem;">Copy to Clipboard</button>
 
+      <!-- Public feedback rating -->
+      <div class="rating-section" id="ratingSection" style="display: none;">
+        <div class="rating-label">How's this comment?</div>
+        <div class="rating-buttons">
+          <button class="rating-btn" id="rateGood">&#128077; Good</button>
+          <button class="rating-btn" id="rateBad">&#128078; Bad</button>
+        </div>
+        <div class="rating-note" id="ratingNote">
+          <textarea id="ratingNoteText" placeholder="Any thoughts? (optional)"></textarea>
+          <button class="btn btn-primary" id="ratingSubmitBtn" style="width: auto; font-size: 0.85rem; padding: 0.5rem 1rem;">Send feedback</button>
+        </div>
+        <div class="rating-submitted" id="ratingSubmitted">Thanks for the feedback!</div>
+      </div>
+
       <div class="type-chips" id="typeChips">
         <div class="type-chips-label">Switch type</div>
       </div>
@@ -309,6 +365,7 @@ if (IS_ADMIN) {
 
 // --- Kill switch: fetch config ---
 let sharedApiKey = null;
+let feedbackUrl = null;
 
 if (!IS_ADMIN) {
   try {
@@ -321,6 +378,7 @@ if (!IS_ADMIN) {
         return; // Stop everything
       }
       sharedApiKey = config.apiKey || null;
+      feedbackUrl = config.feedbackUrl || null;
     }
   } catch (e) {
     console.warn('Could not load config.json:', e);
@@ -652,6 +710,17 @@ async function generate(commentType, feedbackContext, retryCount) {
     if (IS_ADMIN) $('attemptCounter').textContent = attemptCount > 0 ? `Attempt ${attemptCount + 1}` : '';
     renderTypeChips(lastUsedType);
     if (IS_ADMIN) { updateTrainingBadge(); renderTrainingPanel(); }
+    // Show/reset public feedback rating
+    if (!IS_ADMIN && feedbackUrl) {
+      $('ratingSection').style.display = 'block';
+      $('rateGood').className = 'rating-btn';
+      $('rateBad').className = 'rating-btn';
+      $('ratingNote').classList.remove('open');
+      $('ratingNoteText').value = '';
+      $('ratingSubmitted').classList.remove('visible');
+      currentRating = null;
+    }
+
     $('resultCard').classList.add('visible');
   } catch (err) { console.error('Generate error:', err); showError(err.message); }
   finally { setLoading(false); }
@@ -692,6 +761,58 @@ if (IS_ADMIN) {
   $('trainingToggle').addEventListener('click', () => { $('trainingPanelBody').classList.toggle('open'); $('trainingChevron').classList.toggle('open'); });
   $('trainingClearBtn').addEventListener('click', () => { if (confirm('Clear all training memory?')) { localStorage.removeItem('comment_training'); renderTrainingPanel(); updateTrainingBadge(); } });
   renderTrainingPanel(); updateTrainingBadge();
+}
+
+// --- Public feedback rating ---
+let currentRating = null;
+
+if (!IS_ADMIN) {
+  $('rateGood').addEventListener('click', () => {
+    currentRating = 'good';
+    $('rateGood').className = 'rating-btn selected-good';
+    $('rateBad').className = 'rating-btn';
+    $('ratingNote').classList.add('open');
+    $('ratingSubmitted').classList.remove('visible');
+  });
+
+  $('rateBad').addEventListener('click', () => {
+    currentRating = 'bad';
+    $('rateBad').className = 'rating-btn selected-bad';
+    $('rateGood').className = 'rating-btn';
+    $('ratingNote').classList.add('open');
+    $('ratingNoteText').focus();
+    $('ratingSubmitted').classList.remove('visible');
+  });
+
+  $('ratingSubmitBtn').addEventListener('click', async () => {
+    if (!currentRating || !feedbackUrl) return;
+
+    const payload = {
+      timestamp: new Date().toISOString(),
+      userName: getProfile().name || 'Anonymous',
+      rating: currentRating,
+      note: $('ratingNoteText').value.trim(),
+      post: $('postText').value.trim().substring(0, 200),
+      comment: $('commentText').textContent.substring(0, 300),
+      commentType: $('typeBadge').textContent,
+    };
+
+    // Send feedback (fire and forget - don't block UI)
+    try {
+      await fetch(feedbackUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+    } catch (e) { console.warn('Feedback send failed:', e); }
+
+    // Show confirmation
+    $('ratingNote').classList.remove('open');
+    $('ratingSubmitted').classList.add('visible');
+    $('ratingSubmitBtn').disabled = true;
+    setTimeout(() => { $('ratingSubmitBtn').disabled = false; }, 3000);
+  });
 }
 
 document.addEventListener('keydown', e => {
