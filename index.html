@@ -650,6 +650,9 @@ async function callAPI(commentType, feedbackContext) {
       });
       if (resp.ok) {
         const data = await resp.json();
+        if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
+          throw new Error('Gemini blocked this response (safety filter). Try a different post or comment type.');
+        }
         const raw = data.candidates[0].content.parts[0].text.trim();
         try { return JSON.parse(raw); }
         catch { return { chosenType: commentType === 'Auto' ? 'Unknown' : commentType, reasoning: '', comment: raw }; }
@@ -673,13 +676,14 @@ function renderTrainingPanel() {
   if (history.length === 0) { panel.style.display = 'none'; return; }
   panel.style.display = 'block'; $('trainingPanelCount').textContent = history.length;
   body.innerHTML = '';
+  function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
   [...history].reverse().forEach((entry, idx) => {
     const realIdx = history.length - 1 - idx, div = document.createElement('div');
     div.className = 'training-entry';
     let html = `<button class="training-entry-delete" data-idx="${realIdx}" title="Remove">x</button>`;
-    if (entry.feedback) html += `<div class="training-entry-label">Feedback</div><div class="training-entry-text">"${entry.feedback}"</div>`;
-    if (entry.badComment) html += `<div class="training-entry-label" style="margin-top:0.3rem">Rejected</div><div class="training-entry-text">"${entry.badComment.substring(0, 120)}..."</div>`;
-    if (entry.betterComment) html += `<div class="training-entry-label" style="margin-top:0.3rem">Your version</div><div class="training-entry-preferred">"${entry.betterComment.substring(0, 200)}..."</div>`;
+    if (entry.feedback) html += `<div class="training-entry-label">Feedback</div><div class="training-entry-text">"${esc(entry.feedback)}"</div>`;
+    if (entry.badComment) html += `<div class="training-entry-label" style="margin-top:0.3rem">Rejected</div><div class="training-entry-text">"${esc(entry.badComment.substring(0, 120))}..."</div>`;
+    if (entry.betterComment) html += `<div class="training-entry-label" style="margin-top:0.3rem">Your version</div><div class="training-entry-preferred">"${esc(entry.betterComment.substring(0, 200))}..."</div>`;
     div.innerHTML = html; body.appendChild(div);
   });
   body.querySelectorAll('.training-entry-delete').forEach(btn => {
@@ -702,7 +706,7 @@ async function generate(commentType, feedbackContext, retryCount) {
   try {
     const result = await callAPI(commentType, feedbackContext);
     const comment = (result.comment || '').trim(), words = countWords(comment);
-    if (words < 15 && retryCount < 3) return generate(commentType, feedbackContext, retryCount + 1);
+    if (words < 15 && retryCount < 3) { await generate(commentType, feedbackContext, retryCount + 1); return; }
     if (feedbackContext) attemptCount++;
     lastUsedType = result.chosenType || commentType; lastComment = comment; lastReasoning = result.reasoning || '';
     $('typeBadge').textContent = lastUsedType; $('reasoningText').textContent = lastReasoning;
@@ -730,6 +734,13 @@ async function generate(commentType, feedbackContext, retryCount) {
 $('generateBtn').addEventListener('click', () => { if (!isGenerating) { attemptCount = 0; rejectedComments = []; generate($('commentType').value); } });
 $('copyBtn').addEventListener('click', () => {
   navigator.clipboard.writeText($('commentText').textContent).then(() => {
+    $('copyBtn').textContent = 'Copied!'; $('copyBtn').classList.add('copied');
+    setTimeout(() => { $('copyBtn').textContent = 'Copy to Clipboard'; $('copyBtn').classList.remove('copied'); }, 1500);
+  }).catch(() => {
+    // Fallback for non-HTTPS or denied permission
+    const ta = document.createElement('textarea'); ta.value = $('commentText').textContent;
+    ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
     $('copyBtn').textContent = 'Copied!'; $('copyBtn').classList.add('copied');
     setTimeout(() => { $('copyBtn').textContent = 'Copy to Clipboard'; $('copyBtn').classList.remove('copied'); }, 1500);
   });
@@ -801,8 +812,6 @@ if (!IS_ADMIN) {
     try {
       await fetch(feedbackUrl, {
         method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
     } catch (e) { console.warn('Feedback send failed:', e); }
