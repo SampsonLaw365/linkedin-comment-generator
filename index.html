@@ -622,7 +622,7 @@ const MODELS = ['gemini-2.5-flash-lite', 'gemini-2.5-flash-preview'];
 
 async function callAPI(commentType, feedbackContext) {
   const apiKey = getApiKey();
-  if (!apiKey) throw new Error(IS_ADMIN ? 'Please enter your Gemini API key.' : 'This tool is not configured yet. Contact the admin.');
+  if (IS_ADMIN && !apiKey) throw new Error('Please enter your Gemini API key.');
 
   const postText = $('postText').value.trim();
   if (!postText) throw new Error('Please paste a LinkedIn post.');
