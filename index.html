@@ -355,8 +355,19 @@
 <script>
 document.addEventListener('DOMContentLoaded', async function() {
 
-const IS_ADMIN = new URLSearchParams(window.location.search).has('admin');
+const params = new URLSearchParams(window.location.search);
+const IS_ADMIN = params.has('admin');
+const TEAM_USER = params.get('team');
 const $ = id => document.getElementById(id);
+
+// Team profiles - add more people here as needed
+const TEAM_PROFILES = {
+  sam: {
+    name: 'Sam',
+    role: 'B2B SaaS sales',
+    expertise: 'B2B sales process, demos and pipeline generation, the gap between how buyers want to buy and how companies sell, AI in sales (practical not hype), outbound sales, cold calling, lead generation, building lean sales teams, scaling without massive headcount, voice AI and conversational interfaces, SaaS growth, GTM strategy, founder-led sales',
+  },
+};
 
 if (IS_ADMIN) {
   $('appContainer').classList.add('admin-mode');
@@ -447,6 +458,8 @@ const COMMENT_TYPES = ['Supportive', 'Expander', 'Professional', 'Contrarian', '
 
 // --- Profile ---
 function getProfile() {
+  // Team mode: use preset profile, ignore localStorage
+  if (TEAM_USER && TEAM_PROFILES[TEAM_USER]) return TEAM_PROFILES[TEAM_USER];
   try { return JSON.parse(localStorage.getItem('user_profile') || '{}'); }
   catch { return {}; }
 }
@@ -564,11 +577,16 @@ function getApiKey() {
 }
 
 // --- Profile ---
-loadProfile();
-updateProfileStatus();
-if (!isProfileFilled()) { $('profileBody').classList.add('open'); $('profileChevron').classList.add('open'); }
-['profileName', 'profileRole', 'profileExpertise'].forEach(id => { $(id).addEventListener('input', saveProfile); });
-$('profileToggle').addEventListener('click', () => { $('profileBody').classList.toggle('open'); $('profileChevron').classList.toggle('open'); });
+if (TEAM_USER && TEAM_PROFILES[TEAM_USER]) {
+  // Team mode: hide profile section entirely, it's pre-configured
+  $('profileToggle').parentElement.style.display = 'none';
+} else {
+  loadProfile();
+  updateProfileStatus();
+  if (!isProfileFilled()) { $('profileBody').classList.add('open'); $('profileChevron').classList.add('open'); }
+  ['profileName', 'profileRole', 'profileExpertise'].forEach(id => { $(id).addEventListener('input', saveProfile); });
+  $('profileToggle').addEventListener('click', () => { $('profileBody').classList.toggle('open'); $('profileChevron').classList.toggle('open'); });
+}
 
 // --- System prompt editor (admin only) ---
 if (IS_ADMIN) {
