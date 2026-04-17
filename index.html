@@ -529,20 +529,33 @@ function saveTrainingEntry(entry) {
 function buildTrainingPrompt() {
   const history = getTrainingHistory();
   if (history.length === 0) return '';
-  const styleExamples = history.filter(e => e.betterComment);
+  const approved = history.filter(e => e.wasApproved && e.betterComment);
+  const corrections = history.filter(e => e.betterComment && !e.wasApproved);
   const feedbackEntries = history.filter(e => e.feedback && !e.betterComment);
   const name = getProfile().name || 'the user';
 
   let section = `\n\nLEARNED PREFERENCES (from ${name}'s direct feedback - follow these religiously):\n`;
-  if (styleExamples.length > 0) {
-    section += `\n${name.toUpperCase()}'S OWN COMMENTS (match this voice and style closely):\n`;
-    styleExamples.slice(-10).forEach((entry, i) => {
+
+  // Approved comments - these were good enough to copy and use
+  if (approved.length > 0) {
+    section += `\nAPPROVED COMMENTS (${name} copied these to use - this is the quality bar, match this tone and style):\n`;
+    approved.slice(-10).forEach((entry, i) => {
+      section += `${i + 1}. "${entry.betterComment.substring(0, 200)}"\n`;
+    });
+  }
+
+  // User-written corrections
+  if (corrections.length > 0) {
+    section += `\n${name.toUpperCase()}'S OWN COMMENTS (wrote these instead of the AI version - match this voice closely):\n`;
+    corrections.slice(-10).forEach((entry, i) => {
       section += `${i + 1}. `;
       if (entry.badComment) section += `REJECTED: "${entry.badComment.substring(0, 100)}..." `;
       section += `WROTE INSTEAD: "${entry.betterComment.substring(0, 200)}"\n`;
       if (entry.feedback) section += `   REASON: "${entry.feedback}"\n`;
     });
   }
+
+  // Feedback without corrections
   if (feedbackEntries.length > 0) {
     section += '\nREJECTED PATTERNS (never repeat these mistakes):\n';
     feedbackEntries.slice(-10).forEach((entry, i) => {
@@ -757,12 +770,23 @@ async function generate(commentType, feedbackContext, retryCount) {
 // --- Events ---
 $('generateBtn').addEventListener('click', () => { if (!isGenerating) { attemptCount = 0; rejectedComments = []; generate($('commentType').value); } });
 $('copyBtn').addEventListener('click', () => {
-  navigator.clipboard.writeText($('commentText').textContent).then(() => {
+  const commentText = $('commentText').textContent;
+
+  // Save as a positive training example - this comment was good enough to use
+  saveTrainingEntry({
+    postSnippet: $('postText').value.trim().substring(0, 100),
+    badComment: null,
+    feedback: null,
+    betterComment: commentText,
+    wasApproved: true,
+  });
+  if (IS_ADMIN) { updateTrainingBadge(); renderTrainingPanel(); }
+
+  navigator.clipboard.writeText(commentText).then(() => {
     $('copyBtn').textContent = 'Copied!'; $('copyBtn').classList.add('copied');
     setTimeout(() => { $('copyBtn').textContent = 'Copy to Clipboard'; $('copyBtn').classList.remove('copied'); }, 1500);
   }).catch(() => {
-    // Fallback for non-HTTPS or denied permission
-    const ta = document.createElement('textarea'); ta.value = $('commentText').textContent;
+    const ta = document.createElement('textarea'); ta.value = commentText;
     ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta);
     ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
     $('copyBtn').textContent = 'Copied!'; $('copyBtn').classList.add('copied');
