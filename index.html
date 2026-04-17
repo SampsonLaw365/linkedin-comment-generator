@@ -409,11 +409,13 @@ VOICE RULES - THIS IS CRITICAL:
 - Reference specific things from the post to show you actually read it.
 
 THINGS TO NEVER DO:
+- NEVER paraphrase, summarise or rewrite the original post. Your comment must add something NEW - a different perspective, a question, a related experience, a challenge to their point. If your comment could be mistaken for a reworded version of the post, it's a terrible comment.
 - Never mention the person's company by name (this isn't a sales pitch)
 - Never use corporate buzzwords like "synergy", "leverage", "unlock"
 - Never write something that sounds like it came from ChatGPT
 - Never be generic. Every comment must prove you read the post.
 - Never start two sentences the same way
+- Never just agree with the post using different words. Add value or don't comment.
 
 AVAILABLE COMMENT TYPES:
 - Supportive: Backs the author's point, good for achievements and milestones
@@ -494,7 +496,7 @@ function buildProfileSection() {
 function buildFullPrompt() {
   let prompt = getSystemPrompt();
   prompt = prompt.replace('{USER_PROFILE}', buildProfileSection());
-  if (IS_ADMIN) prompt += buildTrainingPrompt();
+  prompt += buildTrainingPrompt();
   return prompt;
 }
 
