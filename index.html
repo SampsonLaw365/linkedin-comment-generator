@@ -369,9 +369,10 @@ let feedbackUrl = null;
 
 if (!IS_ADMIN) {
   try {
-    const configResp = await fetch('https://gist.githubusercontent.com/SampsonLaw365/93e1d033530d0337aaf93998a0e76ddc/raw/gist_config.json?' + Date.now());
+    const configResp = await fetch('https://api.github.com/gists/93e1d033530d0337aaf93998a0e76ddc', { headers: { 'Accept': 'application/vnd.github.v3+json' } });
     if (configResp.ok) {
-      const config = await configResp.json();
+      const gistData = await configResp.json();
+      const config = JSON.parse(gistData.files['gist_config.json'].content);
       if (!config.enabled) {
         $('disabledBanner').classList.add('visible');
         $('appContent').style.display = 'none';
